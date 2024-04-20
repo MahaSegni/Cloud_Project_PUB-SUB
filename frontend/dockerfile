@@ -1,0 +1,18 @@
+from node:16
+
+# Create app directory
+WORKDIR /app
+
+# COPY package.json and package-lock.json
+COPY package*.json ./
+COPY . .
+
+# Install app dependencies
+
+RUN npm install
+
+# we're in development mode
+EXPOSE 3001
+
+CMD ["npm", "run", "build"]
+CMD ["npm", "run", "start"]

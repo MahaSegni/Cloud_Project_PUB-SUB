@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"  # Exposing the backend API port
+      - "8900:8900"  # Exposing the Socket.IO port
+    environment:
+      - MONGO_URI=mongodb+srv://maha82:maha123456789@chatgcloud.rzcvbc6.mongodb.net/
+
+    depends_on:
+      - frontend
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3001:3001"  # Mapping external port 3001 to container's port 3000
+volumes:
+  mongo_data:
+    driver: local
